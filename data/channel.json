@@ -1,6 +1,11 @@
 {
-  "subscriberCount": 450,
+  "subscriberCount": 451,
   "videos": [
+    {
+      "id": "dYjpGT8ckrA",
+      "title": "Täydellinen valmistautuminen Splatterhouse 2:n loppupomoa vastaan? #halloween #retropelaaminen",
+      "publishedAt": "2026-10-27T15:00:27Z"
+    },
     {
       "id": "LeBSWOAeHig",
       "title": "Tämä retropeli sopii täydellisesti Halloweeniin!",
@@ -10,12 +15,7 @@
       "id": "nqALlOhAkhg",
       "title": "Onko tämä vanha kauhupeli KIROTTU?",
       "publishedAt": "2026-10-23T15:00:35Z"
-    },
-    {
-      "id": "YyZSZHHzicU",
-      "title": "Sega Rally Saturnilla - melkein kuin arcade!",
-      "publishedAt": "2026-10-17T08:47:04Z"
     }
   ],
-  "updatedAt": "2026-10-27T14:33:10.607Z"
+  "updatedAt": "2026-10-27T15:59:30.337Z"
 }
