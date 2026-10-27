@@ -1,5 +1,21 @@
 {
-  "subscriberCount": null,
-  "videos": [],
-  "updatedAt": null
+  "subscriberCount": 451,
+  "videos": [
+    {
+      "id": "nqALlOhAkhg",
+      "title": "Onko tämä vanha kauhupeli KIROTTU?",
+      "publishedAt": "2026-10-23T15:00:35Z"
+    },
+    {
+      "id": "kWJAQSsGu_I",
+      "title": "Ostin vihdoin Sega Saturnin – 30 vuotta myöhässä!",
+      "publishedAt": "2026-10-16T13:00:38Z"
+    },
+    {
+      "id": "6ICEjHzimyw",
+      "title": "Miten ihmeessä Lemmingsin tekijät päätyivät tekemään GTA:n?",
+      "publishedAt": "2026-10-02T14:00:12Z"
+    }
+  ],
+  "updatedAt": "2026-10-27T20:30:34.087Z"
 }
