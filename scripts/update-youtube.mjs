@@ -29,26 +29,48 @@ if (!channel?.id) throw new Error('YouTube-kanavaa @aslangt_retro ei löytynyt.'
 const uploadsPlaylist = channel.contentDetails?.relatedPlaylists?.uploads;
 if (!uploadsPlaylist) throw new Error('Kanavan lataussoittolistaa ei löytynyt.');
 
-const playlist = await youtube('playlistItems', {
-  part: 'contentDetails',
-  playlistId: uploadsPlaylist,
-  maxResults: 15,
-});
-const ids = (playlist.items || []).map(item => item.contentDetails?.videoId).filter(Boolean);
-let videos = [];
-if (ids.length) {
-  const result = await youtube('videos', { part: 'snippet,status', id: ids.join(',') });
-  const byId = new Map((result.items || [])
-    .filter(video => video.status?.privacyStatus === 'public' && video.snippet?.title)
-    .map(video => [video.id, video]));
-  videos = ids.map(id => byId.get(id)).filter(Boolean).slice(0, 3).map(video => ({
-    id: video.id,
-    title: video.snippet.title,
-    publishedAt: video.snippet.publishedAt,
-  }));
+// YouTube Data API does not expose an explicit Shorts flag. Current Shorts
+// can be up to 3 minutes, so we include only videos longer than 180 seconds.
+// This intentionally omits normal landscape videos of 3 minutes or less too.
+function durationInSeconds(value) {
+  const match = /^P(?:(\d+)D)?(?:T(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?)?$/.exec(value || '');
+  if (!match) return 0;
+  const [, days = 0, hours = 0, minutes = 0, seconds = 0] = match;
+  return Number(days) * 86400 + Number(hours) * 3600 + Number(minutes) * 60 + Number(seconds);
 }
 
-const subscriberCount = Number(channel.statistics?.subscriberCount);
+const videos = [];
+let nextPageToken;
+for (let page = 0; page < 4 && videos.length < 3; page++) {
+  const playlist = await youtube('playlistItems', {
+    part: 'contentDetails',
+    playlistId: uploadsPlaylist,
+    maxResults: 50,
+    ...(nextPageToken ? { pageToken: nextPageToken } : {}),
+  });
+  const ids = (playlist.items || []).map(item => item.contentDetails?.videoId).filter(Boolean);
+
+  if (ids.length) {
+    const result = await youtube('videos', { part: 'snippet,status,contentDetails', id: ids.join(',') });
+    const byId = new Map((result.items || [])
+      .filter(video => video.status?.privacyStatus === 'public'
+        && video.snippet?.title
+        && durationInSeconds(video.contentDetails?.duration) > 180)
+      .map(video => [video.id, video]));
+    for (const id of ids) {
+      const video = byId.get(id);
+      if (!video) continue;
+      videos.push({ id: video.id, title: video.snippet.title, publishedAt: video.snippet.publishedAt });
+      if (videos.length === 3) break;
+    }
+  }
+
+  nextPageToken = playlist.nextPageToken;
+  if (!nextPageToken) break;
+}
+
+const subscriberCount = channel.statistics?.subscriberCount == null
+  ? NaN : Number(channel.statistics.subscriberCount);
 const output = {
   subscriberCount: channel.statistics?.hiddenSubscriberCount || !Number.isSafeInteger(subscriberCount) ? null : subscriberCount,
   videos,
@@ -56,4 +78,4 @@ const output = {
 };
 
 await writeFile(new URL('../data/channel.json', import.meta.url), `${JSON.stringify(output, null, 2)}\n`, 'utf8');
-console.log(`Updated Aslan GT: subscribers ${output.subscriberCount ?? 'hidden'}, videos ${videos.length}`);
+console.log(`Updated AslanGT: subscribers ${output.subscriberCount ?? 'hidden'}, long-form videos ${videos.length}`);

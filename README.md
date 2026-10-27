@@ -1,8 +1,8 @@
-# Aslan GT
+# AslanGT
 
 Retropelit, vanhat pelikonsolit ja konsolimodaukset.
 
-Tämä repositorio sisältää Aslan GT:n virallisen verkkosivuston.
+Tämä repositorio sisältää AslanGT:n virallisen verkkosivuston.
 
 **Verkkosivut:** https://aslangt.fi
 

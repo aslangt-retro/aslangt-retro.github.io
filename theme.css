@@ -1,0 +1,129 @@
+/* AslanGT:n 80-luvun neonlogo määrittää sivuston väripaletin. */
+:root {
+  --bg: #22242a;
+  --fg: #f8f4ff;
+  --muted: #afa8c7;
+  --accent: #fb45d4;
+  --line: #32243d;
+  --neon-pink: #fb45d4;
+  --electric-blue: #438dff;
+  --neon-purple: #9236d2;
+}
+body { background: #000; }
+.grain { display: none !important; }
+.site-canvas {
+  width: min(100%, 1240px);
+  min-height: 100vh;
+  margin-inline: auto;
+  background: #22242a;
+  border-inline: 1px solid #35363e;
+  border-radius: 20px;
+  overflow: clip;
+  box-shadow: 0 0 80px #00000075;
+}
+.site-header { border-color: #392545; }
+.brand { color: #f7f1fb; }
+.brand span:first-child { color: var(--electric-blue); }
+.brand-dot { color: var(--neon-pink) !important; }
+.header-link span, .text-link span, .subscribe-link span { color: var(--neon-pink); }
+.status-dot, .label-light, .live-pill span { background: var(--neon-pink); box-shadow: 0 0 16px #fb45d48a; }
+.hero { gap: 18px; }
+.hero-lead { color: #c5bdd7; }
+h1 span { color: var(--neon-pink); }
+h2 span { color: #7eafff; }
+.eyebrow, .section-index { color: #e989ee; }
+.button-primary { background: linear-gradient(110deg, #ff4fd6, #ca62e7); color: #140b1b; }
+.button-outline { border-color: #60436b; }
+.button:hover { box-shadow: 0 9px 27px #ec3ec024; }
+.logo-art { min-height: 440px; background: transparent; }
+.logo-badge { width: min(100%, 440px); aspect-ratio: 1; overflow: hidden; border-radius: 50%; background: #000; border: 2px solid #3f2b52; box-shadow: 0 0 35px #0008, 0 0 55px #7b3dc52a; display: grid; place-items: center; position: relative; z-index: 1; }
+.hero-logo { display: block; width: 100%; height: 100%; object-fit: contain; transform: translateX(-15px) scale(1.47); }
+.halo { border-color: rgba(160, 64, 206, .15); }
+.halo-two { border-color: rgba(73, 118, 240, .18); }
+.hero-art:before { display: none; }
+.art-label { background: #130c20; border-color: #5e3476; color: #e4c3f2; }
+.intro-text { color: #cfc8df; }
+.section-heading h2 .name-aslan { color: #63dedb; }
+.section-heading h2 .name-gt { color: #fb45d4; }
+.tag-row span { color: #bdacd2; border-color: #4c345f; }
+.console-feature { padding-top: 8px; padding-bottom: 82px; }
+.console-feature-inner { overflow: hidden; background: #000; border: 1px solid #4f3e62; border-radius: 14px; }
+.console-feature-copy { padding: 35px 42px 0; }
+.console-feature-copy h2 { max-width: 740px; font-size: clamp(30px, 3.6vw, 51px); margin: 12px 0; }
+.console-feature-copy p { color: #c5bdd4; max-width: 560px; font-size: 15px; }
+.console-feature-inner img { display: block; width: 100%; height: auto; max-height: 510px; object-fit: cover; object-position: center 68%; }
+.counter-card { background: linear-gradient(125deg, #21102e, #141225 57%, #10254b); border-color: #61346e; }
+.counter-card:after { background: radial-gradient(circle, rgba(255, 67, 209, .19), transparent 70%); }
+.counter-icon { background: #372046; border-color: #744284; color: #ff69d7; }
+.counter-caption, .counter-note, .progress-foot, .progress-labels span { color: #c7bbd7; }
+.progress-track { background: #393049; }
+.progress-fill { background: linear-gradient(90deg, #fd48d3 0%, #ad4be8 52%, #438dff 100%); }
+.subscribe-link { text-decoration-color: #9953aa; }
+.video-thumb { background: #1c1830; border-color: #453354; }
+.videos-pending { border-color: #4b355b; }
+.videos-pending a, .contact-link { color: #fb79de; }
+.contact-link { border-color: #8b4d93; }
+.footer { color: #ab9fbb; }
+@media (max-width: 850px) {
+  .logo-art { min-height: 325px; }
+  .hero-logo { max-width: 430px; }
+}
+@media (max-width: 580px) {
+  .site-canvas { border-radius: 0; }
+  .logo-art { min-height: 285px; }
+  .logo-badge { width: min(100%, 320px); }
+  .console-feature { padding-bottom: 55px; }
+  .console-feature-copy { padding: 28px 23px 0; }
+  .console-feature-inner img { max-height: 330px; }
+}
+
+/* Mikä ihme on AslanGT? -osion musta kortti */
+.intro-section {
+  background: #000000;
+  border: 1px solid #4f3e62;
+  border-radius: 14px;
+  padding: 42px;
+  max-width: 1080px;
+  margin-top: 24px;
+  margin-bottom: 60px;
+}
+
+@media (max-width: 580px) {
+  .intro-section {
+    padding: 28px 23px;
+    margin-left: 21px;
+    margin-right: 21px;
+  }
+}
+
+/* Uusimmat videot -osion musta kortti */
+.videos-section {
+  background: #000000;
+  border: 1px solid #4f3e62;
+  border-radius: 14px;
+  padding: 42px;
+  max-width: 1080px;
+  margin-top: 40px;
+  margin-bottom: 24px;
+}
+
+/* Ota yhteyttä -osion musta kortti */
+.contact-section {
+  background: #000000;
+  border: 1px solid #4f3e62;
+  border-radius: 14px;
+  padding: 42px;
+  max-width: 1080px;
+  margin-top: 24px;
+  margin-bottom: 60px;
+}
+
+/* AslanGT-brändin värit */
+.brand,
+.footer .brand.small {
+  color: #438DFF;
+}
+
+.brand span:first-child {
+  color: #FB45D4;
+}
