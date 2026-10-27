@@ -127,3 +127,29 @@ h2 span { color: #7eafff; }
 .brand span:first-child {
   color: #FB45D4;
 }
+
+/* Yhtenäiset sisältökortit pienillä näytöillä. */
+@media (max-width: 580px) {
+  .intro-section,
+  .videos-section,
+  .contact-section {
+    width: auto;
+    max-width: none;
+    margin-left: 21px;
+    margin-right: 21px;
+    padding: 28px 23px;
+  }
+
+  .videos-heading {
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .console-feature-inner img {
+    margin-top: -24px;
+  }
+}
